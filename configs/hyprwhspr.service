@@ -11,6 +11,7 @@ ExecStart=/usr/lib/hyprwhspr/bin/hyprwhspr
 ExecStopPost=/bin/bash -c 'pkill -9 -f "hyprwhspr-virtual-keyboard" 2>/dev/null || true'
 Environment=HYPRWHSPR_ROOT=/usr/lib/hyprwhspr
 Environment=PYTHONUNBUFFERED=1
+Environment=LD_PRELOAD=/usr/lib/libgtk4-layer-shell.so
 PassEnvironment=WAYLAND_DISPLAY XDG_RUNTIME_DIR DISPLAY
 Restart=on-failure
 RestartSec=2

@@ -74,6 +74,15 @@ Can be changed in `config.json` → `rest_body.model`
 
 ## Troubleshooting
 
+### OSD bars not moving
+```bash
+# Check mic volume - should be 100%
+pactl get-source-volume @DEFAULT_SOURCE@
+
+# Set to 100% if low
+pactl set-source-volume @DEFAULT_SOURCE@ 100%
+```
+
 ### ERR in waybar - ydotoold
 ```bash
 # Check if user in input group
