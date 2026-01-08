@@ -72,6 +72,14 @@ OpenAI API key stored in `~/.local/share/hyprwhspr/credentials`:
 Using `gpt-4o-mini-transcribe` for fast transcription.
 Can be changed in `config.json` → `rest_body.model`
 
+## Customization
+
+### Smaller OSD (200x34 instead of 400x68)
+```bash
+sudo sed -i "s/sys.argv = \['mic-osd', '--daemon'\]/sys.argv = ['mic-osd', '--daemon', '-w', '200', '-H', '34']/" /usr/lib/hyprwhspr/lib/mic_osd/runner.py
+pkill -9 -f mic_osd; systemctl --user restart hyprwhspr
+```
+
 ## Troubleshooting
 
 ### OSD bars not moving
