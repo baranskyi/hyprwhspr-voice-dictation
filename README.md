@@ -52,7 +52,7 @@ chmod +x ~/.local/bin/hyprwhspr-toggle.sh
 ### 5. Add Hyprland binding
 Add to `~/.config/hypr/hyprland.conf`:
 ```bash
-bind = CTRL, space, exec, ~/.local/bin/hyprwhspr-toggle.sh
+bindd = CTRL, space, Voice dictation toggle, exec, ~/.local/bin/hyprwhspr-toggle.sh
 ```
 
 ### 6. Enable and start services
