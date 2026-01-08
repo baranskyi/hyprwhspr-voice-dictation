@@ -7,18 +7,20 @@ Voice dictation system for Hyprland using OpenAI Whisper API.
 - **Visual indicator**: Centered OSD with audio level and recording dot
 - **Fast transcription**: OpenAI gpt-4o-mini-transcribe model
 - **Auto-paste**: Text automatically inserted via ydotool
+- **Spotify integration**: Auto-pause on record, auto-resume on stop
 
 ## Requirements
 - hyprwhspr (AUR package)
 - ydotool
 - wl-clipboard (wl-copy, wl-paste)
 - PipeWire/PulseAudio
+- playerctl (for Spotify integration)
 
 ## Installation
 
 ### 1. Install packages
 ```bash
-yay -S hyprwhspr ydotool wl-clipboard
+yay -S hyprwhspr ydotool wl-clipboard playerctl
 ```
 
 ### 2. Add user to input group
@@ -41,19 +43,25 @@ chmod 600 ~/.local/share/hyprwhspr/credentials
 cp configs/hyprwhspr.service ~/.config/systemd/user/
 ```
 
-### 4. Add Hyprland binding
-Add to `~/.config/hypr/hyprland.conf`:
+### 4. Install toggle script (with Spotify integration)
 ```bash
-bind = CTRL, space, exec, if [ "$(cat ~/.config/hyprwhspr/recording_status 2>/dev/null)" = "true" ]; then echo stop > ~/.config/hyprwhspr/recording_control; else echo start > ~/.config/hyprwhspr/recording_control; fi
+cp configs/hyprwhspr-toggle.sh ~/.local/bin/
+chmod +x ~/.local/bin/hyprwhspr-toggle.sh
 ```
 
-### 5. Enable and start services
+### 5. Add Hyprland binding
+Add to `~/.config/hypr/hyprland.conf`:
+```bash
+bind = CTRL, space, exec, ~/.local/bin/hyprwhspr-toggle.sh
+```
+
+### 6. Enable and start services
 ```bash
 systemctl --user daemon-reload
 systemctl --user enable --now hyprwhspr ydotool
 ```
 
-### 6. Reload Hyprland
+### 7. Reload Hyprland
 ```bash
 hyprctl reload
 ```
@@ -120,6 +128,7 @@ journalctl --user -u hyprwhspr -f
 | `~/.config/hyprwhspr/config.json` | Main configuration |
 | `~/.local/share/hyprwhspr/credentials` | API key storage |
 | `~/.config/systemd/user/hyprwhspr.service` | Systemd service |
+| `~/.local/bin/hyprwhspr-toggle.sh` | Toggle script with Spotify control |
 | `~/.config/hypr/hyprland.conf` | Hyprland keybinding |
 
 ## Services
