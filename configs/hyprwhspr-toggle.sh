@@ -16,6 +16,8 @@ if [ "$(cat $STATUS_FILE 2>/dev/null)" = "true" ]; then
     rm -f $PLAYER_STATE_FILE
 else
     # Start recording
+    # Ensure mic volume is 100% (PipeWire sometimes resets it)
+    pactl set-source-volume @DEFAULT_SOURCE@ 100%
     # Save Spotify status
     playerctl -p spotify status > $PLAYER_STATE_FILE 2>/dev/null || echo "Stopped" > $PLAYER_STATE_FILE
     # Pause Spotify if playing
