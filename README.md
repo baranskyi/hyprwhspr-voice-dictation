@@ -15,6 +15,17 @@ Voice dictation system for Hyprland (Wayland) using OpenAI Whisper API. Supports
 - **Spotify integration**: Auto-pause on record, auto-resume on stop
 - **Multi-language**: Whisper auto-detects 100+ languages (English, Russian, Spanish, Chinese, etc.)
 
+## Why not Omarchy's built-in voice dictation?
+
+[Omarchy](https://github.com/basecamp/omarchy) includes voice dictation, but it only supports **English**.
+
+This setup uses OpenAI Whisper API which:
+- Supports **100+ languages** with auto-detection
+- Works with any language without configuration changes
+- Handles mixed-language input (code-switching)
+
+If you only need English, Omarchy's built-in solution works great. For multilingual support, use this setup.
+
 ## Requirements
 - hyprwhspr (AUR package)
 - ydotool

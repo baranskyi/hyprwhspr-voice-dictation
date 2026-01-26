@@ -39,6 +39,12 @@ Then grab the configs from my repo: https://github.com/baranskyi/hyprwhspr-voice
 OpenAI charges $0.003/minute. A typical voice command is 5-10 seconds = ~$0.001.
 I use it ~50 times/day and pay less than $2/month.
 
+### Why not Omarchy's built-in voice dictation?
+
+[Omarchy](https://github.com/basecamp/omarchy) (a Hyprland config/rice) has built-in voice dictation, but it only supports **English**.
+
+This setup uses OpenAI Whisper API which supports **100+ languages** with auto-detection — no config changes needed. Just speak in any language.
+
 ### Languages tested
 English, Russian, Spanish, German, French, Japanese, Chinese — all work perfectly. Whisper supports 100+ languages with auto-detection.
 
