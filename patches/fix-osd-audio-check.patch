@@ -1,0 +1,20 @@
+--- a/lib/mic_osd/main.py
++++ b/lib/mic_osd/main.py
+@@ -115,7 +115,8 @@ class MicOSD:
+             return  # Exit early - don't start timer
+
+         # Verify that audio stream is actually receiving audio (not just zeros)
+-        # This prevents showing window when mic is unplugged but stream opens successfully
++        # Skip this check in daemon mode - hyprwhspr handles audio separately
++        if not self.daemon:
+             import time
+             verification_start = time.monotonic()
+             verification_duration = 0.25  # 250ms verification period
+@@ -136,6 +137,7 @@ class MicOSD:
+                 self.audio_monitor.stop()
+                 self.visible = False
+                 self.window.set_visible(False)
+                 return  # Exit early - don't start timers
++        # End of non-daemon audio verification
+
+         # Start update timer (60 FPS)
